@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <v-card color="black">Test</v-card>
+    <v-card class="rounded-xl" color="black">Test</v-card>
   </div>
 </template>
 

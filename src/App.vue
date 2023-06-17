@@ -1,30 +1,58 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
+<script lang="ts">
+  import { defineComponent } from "vue";
+  import { Layout } from "@/layouts/layout";
+
+  export default defineComponent({
+    name: "App",
+    computed: {
+      layout() {
+        return this.$route.meta.layout || Layout.MainLayout;
+      },
+    },
+  });
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @font-face {
+    font-family: "LINESeed";
+    src: local("LINESeed"),
+      url(@/assets/fonts/LINESeed/LINESeedSansTH_W_Bd.woff) format("woff"),
+      url(@/assets/fonts/LINESeed/LINESeedSansTH_W_He.woff) format("woff"),
+      url(@/assets/fonts/LINESeed/LINESeedSansTH_W_Rg.woff) format("woff"),
+      url(@/assets/fonts/LINESeed/LINESeedSansTH_W_Th.woff) format("woff"),
+      url(@/assets/fonts/LINESeed/LINESeedSansTH_W_XBd.woff) format("woff");
+  }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
+  #app {
+    font-family: LINESeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  nav {
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
     }
   }
-}
+
+  body,
+  html {
+    height: 100%;
+    // overflow-y: hidden;
+  }
 </style>
